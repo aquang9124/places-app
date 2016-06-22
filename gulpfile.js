@@ -17,7 +17,7 @@ gulp.task('sass', function() {
 
 // compile JS files
 gulp.task('scripts', function() {
-	return gulp.src(['./client/app/module.js', './client/app/config/*.js', paths.js])
+	return gulp.src(['./client/app/module.js', paths.js])
 		.pipe(concat('main.js'))
 		.pipe(gulp.dest('./client/dist'));
 });
