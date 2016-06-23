@@ -173,20 +173,26 @@ nav {
 	padding: 3em 0;
 	position: relative;
 
+	.search-form {
+		margin-top: 4em;
+	}
+}
+
+// description stylings
+.description {
+	width: 75%;
+	height: auto;
+	margin: 0 auto;
+	text-align: justify;
+
 	.about-app-heading {
 		margin: 0;
-		letter-spacing: 0.1em;
-		font-size: 2.2em;
+		letter-spacing: 0.13em;
+		font-size: 3.2em;
 	}
 
 	.about-the-app {
 		margin: 1em auto 0 auto;
-		text-align: justify;
-		width: 75%;
-	}
-
-	.search-form {
-		margin-top: 4em;
 	}
 }
 
@@ -208,6 +214,9 @@ nav {
 		min-height: 100%;
 	}
 }
+
+// loading animation stylings
+
 
 /* ---------------------- 
 

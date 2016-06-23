@@ -46,6 +46,7 @@
 		$scope.query = "";
 		$scope.currentLoc;
 		$scope.searching = false;
+		$scope.located;
 
 
 
@@ -65,6 +66,7 @@
 				$scope.currentLoc = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 				
 				$scope.map.setCenter($scope.currentLoc);
+				$scope.located = false;
 				
 				var request = {
 					location: $scope.currentLoc,
@@ -108,6 +110,7 @@
 
 		function fn(results, status) {
 			if (status == google.maps.places.PlacesServiceStatus.OK) {
+				$scope.located = true;
 			    for (var i = 0; i < results.length; i++) {
 					var place = results[i];
 					addMarker(results[i]);
@@ -135,7 +138,8 @@
 					var contentStr = "<p>" + result.name + "<br />" 
 										+ "Rating: " + (result.rating ? result.rating : 'Unavailable')
 										+ "<br />" + "Open Now!" 
-										+ "<br />" + "Located at: " + result.formatted_address;
+										+ "<br />" + "Located at: " + result.formatted_address
+										+ "<br />" + "More Details: " + "<a href='" + result.url + "' target='_blank'>Google Places Page</a>";
 					$scope.infoWindow.setContent(contentStr);
 					$scope.infoWindow.open($scope.map, marker);
 				});

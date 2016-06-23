@@ -34,8 +34,10 @@
 		</header>
 	</section>
 	<section id="search-box" ng-controller="searchCtrl">
-		<h2 class="about-app-heading">Hello! Welcome to the Places App</h2>
-		<p class="about-the-app">If you are looking for information about a specific location you are in the right place. There are many things that you can try typing into the query box. For example, if you type 'pizza', you will get a list of pizza places near your location. Try it out!</p>
+		<div class="description">
+			<h2 class="about-app-heading">Hello! Welcome to the Places App</h2>
+			<p class="about-the-app">If you are looking for information about a specific location you are in the right place. There are many things that you can try typing into the query box. For example, if you type 'pizza', you will get a list of pizza places near your location. Try it out!</p>
+		</div>
 		<form role="form" class="search-form">
 			<div class="form-group">
 				<label for="query">Query:</label>
@@ -47,6 +49,7 @@
 		</form>
 		<section class="map-wrapper" ng-hide="searching === false">
 			<div id="gmap"></div>
+			<div id="loading" ng-show="located === false"></div>
 		</section>
 	</section>
 
