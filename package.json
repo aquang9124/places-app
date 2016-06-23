@@ -1,5 +1,5 @@
 {
-  "name": "party_app",
+  "name": "places_app",
   "version": "1.0.0",
   "description": "Web App to find specific places and organize parties",
   "main": "index.js",
