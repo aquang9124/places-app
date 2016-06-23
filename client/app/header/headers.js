@@ -24,7 +24,7 @@
 			console.log(divID);
 			$('html, body').animate({
 		        scrollTop: $("#" + divID).offset().top
-		    }, 1000);
+		    }, 900);
 		}
 	}
 

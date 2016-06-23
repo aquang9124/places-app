@@ -14,7 +14,7 @@
 		<nav role="navigation">
 			<ul id="navbar-name">
 				<li>
-					<a href="#top" ng-click="scrollToDiv('top')">Alex Quang</a>
+					<a ng-click="scrollToDiv('top')">Alex Quang</a>
 				</li>
 			</ul>
 			<ul>
@@ -23,7 +23,7 @@
 					<a href="javascript:void(0)" ng-click="showLinks()" ng-if="openMenu"><i class="fa fa-times fa-2x" aria-hidden="true"></i></a>
 				</li>
 				<li class="mobile-only" ng-class="{ 'mobile-display' : mobileScreen == true, 'hover-link' : mobileScreen == true }"><a href="#top" ng-click="scrollToDiv('top')">Home</a></li>
-				<li class="hover-link" ng-class="{ 'mobile-display' : mobileScreen == true }"><a href="#search-box" ng-click="scrollToDiv('search-box')">Search</a></li>
+				<li class="hover-link" ng-class="{ 'mobile-display' : mobileScreen == true }"><a href="javascript:void(0)" ng-click="scrollToDiv('search-box')">Search</a></li>
 			</ul>
 		</nav>
 		<header class="big-header">
@@ -41,18 +41,19 @@
 		<form role="form" class="search-form">
 			<div class="form-group">
 				<label for="query">Query:</label>
-				<input class="form-control" type="text" name="query" id="query" ng-model="query">
+				<input class="form-control" type="text" name="query" ng-focus="initLoading()" id="query" ng-model="query">
 			</div>
 			<div class="form-group">
 				<button type="submit" class="btn btn-success" ng-click="initPlaces()">Search</button>
 			</div>
 		</form>
-		<section class="map-wrapper" ng-hide="searching === false">
+		<div id="load-wrap" ng-if="searching == false && located == false">
+			<div id="loading"></div>
+		</div>
+		<section class="map-wrapper" ng-show="searching == true">
 			<div id="gmap"></div>
-			<div id="loading" ng-show="located === false"></div>
 		</section>
 	</section>
-
 
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=INSERTAPIKEYHERE&libraries=places"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>

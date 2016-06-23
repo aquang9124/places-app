@@ -5,6 +5,7 @@
 	function searchCtrl($scope) {
 		$scope.initPlaces = initPlaces;
 		$scope.initPlacesAlt = initPlacesAlt;
+		$scope.initLoading = initLoading;
 		$scope.map;
 		$scope.service;
 		$scope.infoWindow;
@@ -13,25 +14,26 @@
 		$scope.searching = false;
 		$scope.located;
 
-
-
 		// function implementations
+		function initLoading() {
+			$scope.located = false;
+		}
+
 		function initPlaces() {
+			$scope.located = true;
 			$scope.searching = true;
 			var options = {
 				zoom: 12,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
-
-			$scope.map = new google.maps.Map(document.getElementById("gmap"), options);
-
 			
+			$scope.map = new google.maps.Map(document.getElementById("gmap"), options);
 
 			navigator.geolocation.getCurrentPosition(function(position) {
 				$scope.currentLoc = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 				
 				$scope.map.setCenter($scope.currentLoc);
-				$scope.located = false;
+				
 				
 				var request = {
 					location: $scope.currentLoc,
@@ -44,12 +46,9 @@
 				$scope.service = new google.maps.places.PlacesService($scope.map);
 				$scope.service.textSearch(request, fn);
 			});
-			
-
 		}
 
 		function initPlacesAlt() {
-			$scope.searching = true;
 			var options = {
 				zoom: 12,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -75,7 +74,6 @@
 
 		function fn(results, status) {
 			if (status == google.maps.places.PlacesServiceStatus.OK) {
-				$scope.located = true;
 			    for (var i = 0; i < results.length; i++) {
 					var place = results[i];
 					addMarker(results[i]);

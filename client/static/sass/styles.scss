@@ -2,7 +2,13 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 
 // mixins
-
+@mixin animate($animation-kf, $duration, $transition-timing, $persistence) {
+	-webkit-animation: $animation-kf $duration $transition-timing $persistence;
+    -moz-animation: $animation-kf $duration $transition-timing $persistence;
+    -ms-animation: $animation-kf $duration $transition-timing $persistence;
+    -o-animation: $animation-kf $duration $transition-timing $persistence;
+    animation: $animation-kf $duration $transition-timing $persistence;
+}
 
 // stylings for html, body
 html, body {
@@ -95,6 +101,7 @@ nav {
 				text-align: center;
 				text-decoration: none;
 				color: black;
+				cursor: pointer;
 			}
 		}
 	}
@@ -216,7 +223,67 @@ nav {
 }
 
 // loading animation stylings
+#load-wrap {
+	height: 40em;
+	width: 80%;
+	padding: 1em 0;
+	position: relative;
+	background-color: #162525;
+	margin: 0 auto;
 
+	#loading {
+		top: 50%;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		position: absolute;
+		width:100px;
+		height: 100px;
+		border-radius: 50%;
+	}
+	#loading:before {
+		content:'Loading';
+		position: absolute;
+		font-family: 'Montserrat', 'Open Sans', sans-serif;
+		font-size: 1.3em;
+		top: 30%;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		color: #FFF;
+	}
+	#loading:after {
+		content: '';
+		position: absolute;
+		width: 100px;
+		height: 100px;
+		border: 2px solid #0EC198;
+		border-radius: 50%;
+		transform: translate(-50%, -50%);
+		top: 45%;
+		left: 50%;
+		@include animate(ripple, 1.5s, ease-out, infinite);
+	}
+	
+}
+
+@keyframes ripple{
+	0%{
+		width: 100px;
+		height: 100px;
+		opacity: 1;
+	}
+	96%{
+		width: 400px;
+		height: 400px;
+		opacity: 0;
+	}
+	100%{
+		width: 400px;
+		height: 400px;
+		opacity: 0;
+	}
+}
 
 /* ---------------------- 
 
